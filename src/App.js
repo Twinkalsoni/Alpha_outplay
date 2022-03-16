@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container, ImageList, Paper, Typography , Switch} from '@material-ui/core';
+import Navbar from './components/Navbar';
+import {createTheme, ThemeProvider  } from '@material-ui/core/styles';
+import Games from './components/Games';
+import Imagelist from './components/Imagelist'
+import { useState } from 'react';
+import Tournaments from './components/Tournaments';
 
 function App() {
+const[darkmode, setdarkmode] = useState(false);
+
+  const DarkTheme = createTheme({
+    palette: {
+      type:"dark",
+    },
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={DarkTheme}>
+      <Paper style={{height:"500vh"}}>
+     <Navbar/>
+        {/* <Switch checked= {darkmode} onchange={()=> setdarkmode (!darkmode)}></Switch> */}
+            {/* <ResponsiveAppBar/> */}
+     <Container>
+     {/* <Games/> */}
+     <Tournaments/>
+     <Imagelist/>
+     </Container>
+     </Paper>
+     </ThemeProvider>
   );
 }
 
